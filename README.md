@@ -59,8 +59,7 @@ Keystore password : hadoop
 Keystore type : JKS
 ```
 
-![alt tag](https://github.com/jobinthompu/HDF-2.0-NiFi-User-Authentication-with-LDAP/blob/master/images/advanced-nifi-ambari-ssl-config.jpg)
-
+![alt tag](https://github.com/jobinthompu/HDF-2.0-NiFi-User-Authentication-with-LDAP/blob/master/images/Advanced_nifi_ambari_ssl_config.jpg)
 
 2. Enter Below as the Truststore and DN configurations :
 
@@ -71,7 +70,7 @@ NiFi CA DN prefix : CN=
 NiFi CA DN suffix : , OU=NIFI
 ```
 
-![alt tag](https://github.com/jobinthompu/HDF-2.0-NiFi-User-Authentication-with-LDAP/blob/master/images/truststore-and-dn.jpg)
+![alt tag](https://github.com/jobinthompu/HDF-2.0-NiFi-User-Authentication-with-LDAP/blob/master/images/Truststore_and_DN.jpg)
 
 
 3. Provide the configuration as below for Node Identities and keystore details:
@@ -86,7 +85,7 @@ Node Identities :
 
 ```
 
-![alt tag](https://github.com/jobinthompu/HDF-2.0-NiFi-User-Authentication-with-LDAP/blob/master/images/node-identity.jpg)
+![alt tag](https://github.com/jobinthompu/HDF-2.0-NiFi-User-Authentication-with-LDAP/blob/master/images/Node_Identity.jpg)
 
 
 4. In the Ambari UI, choose NiFi service and select config tab. We have to update two set of properties, in the “Advanced nifi-properties ” section update nifi.security.user.login.identity.provider as ldap-provider
@@ -95,7 +94,7 @@ Node Identities :
 nifi.security.user.login.identity.provider=ldap-provider
 ```
 
-![alt tag](https://github.com/jobinthompu/HDF-2.0-NiFi-User-Authentication-with-LDAP/blob/master/images/ldap-provider.jpg)
+![alt tag](https://github.com/jobinthompu/HDF-2.0-NiFi-User-Authentication-with-LDAP/blob/master/images/ldap_provider.jpg)
 
 5. Now in the “Advanced nifi-login-identity-providers-env ” section, update the “Template for loginidentity-providers.xml “ property with below configurations just above </loginIdentityProviders>
 
@@ -124,7 +123,7 @@ nifi.security.user.login.identity.provider=ldap-provider
 <property name="Authentication Expiration">12 hours</property>
 </provider>
 ```
-![alt tag](https://github.com/jobinthompu/HDF-2.0-NiFi-User-Authentication-with-LDAP/blob/master/images/loginidentityproviders.jpg)
+![alt tag](https://github.com/jobinthompu/HDF-2.0-NiFi-User-Authentication-with-LDAP/blob/master/images/loginIdentityProviders.jpg)
 
 6. Once All properties are updated, click save and when prompted, click restart.
 
@@ -139,7 +138,7 @@ admin/admin-password
 
 8. You should be able to login as Admin user for NiFi and should see the below UI:
 
-![alt tag](https://github.com/jobinthompu/HDF-2.0-NiFi-User-Authentication-with-LDAP/blob/master/images/nifi-ui.jpg)
+![alt tag](https://github.com/jobinthompu/HDF-2.0-NiFi-User-Authentication-with-LDAP/blob/master/images/NiFi_UI.jpg)
 
 Adding a User and Providing Access to UI
 1) Let us go ahead and create a user jobin in ldap so that we can give access for him to NiFi UI.
@@ -178,15 +177,15 @@ uid=jobin,ou=people,dc=hadoop,dc=apache,dc=org
 ```
 
 Enter the above value and click OK.
-![alt tag](https://github.com/jobinthompu/HDF-2.0-NiFi-User-Authentication-with-LDAP/blob/master/images/user-add.jpg)
+![alt tag](https://github.com/jobinthompu/HDF-2.0-NiFi-User-Authentication-with-LDAP/blob/master/images/user_add.jpg)
 
 5. Now close the users window and click to open 'policies' window on the management menu on the top right corner below 'users' menu. click "+user" button on right top corner, on the pop up, enter jobin and select the user and click OK.
 
-![alt tag](https://github.com/jobinthompu/HDF-2.0-NiFi-User-Authentication-with-LDAP/blob/master/images/jobin-policy.png)
+![alt tag](https://github.com/jobinthompu/HDF-2.0-NiFi-User-Authentication-with-LDAP/blob/master/images/jobin_policy.jpg)
 
 6. Once policy added, it will look like below:
 
-![alt tag](https://github.com/jobinthompu/HDF-2.0-NiFi-User-Authentication-with-LDAP/blob/master/images/policy-done.png)
+![alt tag](https://github.com/jobinthompu/HDF-2.0-NiFi-User-Authentication-with-LDAP/blob/master/images/policy_done.jpg)
 
 7. Now you may log out as admin and provide below credentials to login as 'jobin' user,
 
@@ -196,7 +195,7 @@ jobin/jobin-password
 
 8. you should be able to login and view the UI, but wont have privilege to add anything to the canvas. (as jobin is given only read access) you may login back as admin and give required access.
 
-![alt tag](https://github.com/jobinthompu/HDF-2.0-NiFi-User-Authentication-with-LDAP/blob/master/images/jobin-loggedin.png)
+![alt tag](https://github.com/jobinthompu/HDF-2.0-NiFi-User-Authentication-with-LDAP/blob/master/images/jobin_loggedin.jpg)
 
 
 ###This completes the tutorial, You have successfully:
