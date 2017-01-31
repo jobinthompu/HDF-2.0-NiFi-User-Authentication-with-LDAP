@@ -49,7 +49,7 @@ guest/guest-password
 ##Configuring NiFi for LDAP Authentication via Ambari
 
 
-1. Login to Ambari UI in the server URL, Click on the NiFi service à and then click on Config tab, expand “Advanced nifi-ambari-ssl-config ” section, update configuration as below:
+1) Login to Ambari UI in the server URL, Click on the NiFi service à and then click on Config tab, expand “Advanced nifi-ambari-ssl-config ” section, update configuration as below:
 
 ```
 Initial Admin Identity : uid=admin,ou=people,dc=hadoop,dc=apache,dc=org
@@ -61,7 +61,7 @@ Keystore type : JKS
 
 ![alt tag](https://github.com/jobinthompu/HDF-2.0-NiFi-User-Authentication-with-LDAP/blob/master/images/Advanced_nifi_ambari_ssl_config.jpg)
 
-2. Enter Below as the Truststore and DN configurations :
+2) Enter Below as the Truststore and DN configurations :
 
 ```
 Truststore password : hadoop
@@ -73,7 +73,7 @@ NiFi CA DN suffix : , OU=NIFI
 ![alt tag](https://github.com/jobinthompu/HDF-2.0-NiFi-User-Authentication-with-LDAP/blob/master/images/Truststore_and_DN.jpg)
 
 
-3. Provide the configuration as below for Node Identities and keystore details:
+3) Provide the configuration as below for Node Identities and keystore details:
 
 ```
 NiFi CA Force Regenerate? : {click check box} 
@@ -88,7 +88,7 @@ Node Identities :
 ![alt tag](https://github.com/jobinthompu/HDF-2.0-NiFi-User-Authentication-with-LDAP/blob/master/images/Node_Identity.jpg)
 
 
-4. In the Ambari UI, choose NiFi service and select config tab. We have to update two set of properties, in the “Advanced nifi-properties ” section update nifi.security.user.login.identity.provider as ldap-provider
+4) In the Ambari UI, choose NiFi service and select config tab. We have to update two set of properties, in the “Advanced nifi-properties ” section update nifi.security.user.login.identity.provider as ldap-provider
 
 ```
 nifi.security.user.login.identity.provider=ldap-provider
@@ -96,7 +96,7 @@ nifi.security.user.login.identity.provider=ldap-provider
 
 ![alt tag](https://github.com/jobinthompu/HDF-2.0-NiFi-User-Authentication-with-LDAP/blob/master/images/ldap_provider.jpg)
 
-5. Now in the “Advanced nifi-login-identity-providers-env ” section, update the “Template for loginidentity-providers.xml “ property with below configurations just above </loginIdentityProviders>
+5) Now in the “Advanced nifi-login-identity-providers-env ” section, update the “Template for loginidentity-providers.xml “ property with below configurations just above </loginIdentityProviders>
 
 ```
 <provider>
@@ -125,9 +125,9 @@ nifi.security.user.login.identity.provider=ldap-provider
 ```
 ![alt tag](https://github.com/jobinthompu/HDF-2.0-NiFi-User-Authentication-with-LDAP/blob/master/images/loginIdentityProviders.jpg)
 
-6. Once All properties are updated, click save and when prompted, click restart.
+6) Once All properties are updated, click save and when prompted, click restart.
 
-7. Once restarted, you can try connecting to nifi URL, you should see the below screen, enter credentials as below for admin user the configured Initial Admin Identity and click LOG IN
+7) Once restarted, you can try connecting to nifi URL, you should see the below screen, enter credentials as below for admin user the configured Initial Admin Identity and click LOG IN
 
 ```
 https://node1:9091/nifi/     --> in my case host is node1
@@ -136,11 +136,12 @@ admin/admin-password
 ```
 ![alt tag](https://github.com/jobinthompu/HDF-2.0-NiFi-User-Authentication-with-LDAP/blob/master/images/nifi-login.jpg)
 
-8. You should be able to login as Admin user for NiFi and should see the below UI:
+8) You should be able to login as Admin user for NiFi and should see the below UI:
 
 ![alt tag](https://github.com/jobinthompu/HDF-2.0-NiFi-User-Authentication-with-LDAP/blob/master/images/NiFi_UI.jpg)
 
-Adding a User and Providing Access to UI
+##Adding a User and Providing Access to UI
+
 1) Let us go ahead and create a user jobin in ldap so that we can give access for him to NiFi UI.
 
 2) Edit the users.ldif file with below entry in the knox/conf directory and restart the server:
@@ -179,21 +180,21 @@ uid=jobin,ou=people,dc=hadoop,dc=apache,dc=org
 Enter the above value and click OK.
 ![alt tag](https://github.com/jobinthompu/HDF-2.0-NiFi-User-Authentication-with-LDAP/blob/master/images/user_add.jpg)
 
-5. Now close the users window and click to open 'policies' window on the management menu on the top right corner below 'users' menu. click "+user" button on right top corner, on the pop up, enter jobin and select the user and click OK.
+5) Now close the users window and click to open 'policies' window on the management menu on the top right corner below 'users' menu. click "+user" button on right top corner, on the pop up, enter jobin and select the user and click OK.
 
 ![alt tag](https://github.com/jobinthompu/HDF-2.0-NiFi-User-Authentication-with-LDAP/blob/master/images/jobin_policy.jpg)
 
-6. Once policy added, it will look like below:
+6) Once policy added, it will look like below:
 
 ![alt tag](https://github.com/jobinthompu/HDF-2.0-NiFi-User-Authentication-with-LDAP/blob/master/images/policy_done.jpg)
 
-7. Now you may log out as admin and provide below credentials to login as 'jobin' user,
+7) Now you may log out as admin and provide below credentials to login as 'jobin' user,
 
 ```
 jobin/jobin-password
 ```
 
-8. you should be able to login and view the UI, but wont have privilege to add anything to the canvas. (as jobin is given only read access) you may login back as admin and give required access.
+8) you should be able to login and view the UI, but wont have privilege to add anything to the canvas. (as jobin is given only read access) you may login back as admin and give required access.
 
 ![alt tag](https://github.com/jobinthompu/HDF-2.0-NiFi-User-Authentication-with-LDAP/blob/master/images/jobin_loggedin.jpg)
 
